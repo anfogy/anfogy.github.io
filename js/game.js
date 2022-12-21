@@ -1,4 +1,4 @@
-var points = 0;
+var points = 10;
 
 var canvas = document.getElementById("ballCanv");
 var ctx = canvas.getContext("2d");

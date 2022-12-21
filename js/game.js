@@ -38,7 +38,7 @@ function updatePoints() {
 }
 
 function tickUpdate() {
+    draw();
    updatePoints();
 }
-setInterval(draw, 10);
-setInterval(tickUpdate, 0);
+setInterval(tickUpdate);

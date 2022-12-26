@@ -1,12 +1,12 @@
-var points = 10;
+var points = 1;
 
 var canvas = document.getElementById("ballCanv");
 var ctx = canvas.getContext("2d");
 var ballRadius = 20;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 2;
-var dy = -2;
+var dx = 0.1;
+var dy = -dx;
 
 function drawBall() {
     ctx.beginPath();
@@ -19,7 +19,7 @@ function drawBall() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
-    
+
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
         points++;
@@ -28,7 +28,7 @@ function draw() {
         dy = -dy;
         points++;
     }
-    
+
     x += dx;
     y += dy;
 }
@@ -38,7 +38,7 @@ function updatePoints() {
 }
 
 function tickUpdate() {
-    draw();
+   draw();
    updatePoints();
 }
 setInterval(tickUpdate);

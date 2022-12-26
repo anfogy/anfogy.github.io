@@ -1,15 +1,10 @@
-#news{
-    position: relative;
-    display: inline-block;
-    font-family: Typewriter;
-    font-size: 15px;
-    white-space: nowrap;
-    font-weight: bold
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 2px;
-    width: 75%;
-    overflow: hidden;
-    margin: auto;
-    text-align: left
+#game {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
+#points {
+  font-size: x-large;
 }

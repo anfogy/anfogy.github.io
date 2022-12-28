@@ -22,21 +22,25 @@ function draw() {
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
-        points++;
+        edgeHitEvent();
     }
     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
         dy = -dy;
-        points++;
+        edgeHitEvent();
     }
 
     x += dx;
     y += dy;
 }
 
+function edgeHitEvent() {
+  points++;
+  dx = dx * points;
+  dy = dy * points;
+}
+
 function updatePoints() {
    document.getElementById("points").innerText = points;
-   dx = dx * points;
-   dy = dy * points;
 }
 
 function tickUpdate() {

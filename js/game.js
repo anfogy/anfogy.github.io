@@ -8,41 +8,43 @@ var y = canvas.height-30;
 
 var dx = 0.3;
 var dy = -dx;
+var speed = dx;
 
-function setSpeed(speed) {
-   dx = speed;
-   dy = -speed;
+function setSpeed(sp) {
+ dx += sp;
+ dy -= sp;
+ speed = sp;
 }
 
 function drawBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
 
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-        dx = -dx;
-        edgeHitEvent();
-    }
-    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-        dy = -dy;
-        edgeHitEvent();
-    }
+  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+      dx = -dx;
+      edgeHitEvent();
+  }
+  if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+      dy = -dy;
+      edgeHitEvent();   
+  }
 
-    x += dx;
-    y += dy;
+  x += dx;
+  y += dy;
 }
 
 function edgeHitEvent() {
   points++;
-  setSpeed(dx*1.05);
-  setSpeed(dx*(25-dx)/25);
+  setSpeed(speed*1.05);
+  setSpeed(speed*(25-speed)/25);
 }
 
 function updatePoints() {

@@ -6,7 +6,7 @@ var ballRadius = 20;
 var x = canvas.width/2;
 var y = canvas.height-30;
 
-var dx = 0.1;
+var dx = 0.3;
 var dy = -dx;
 
 function setSpeed(speed) {
@@ -41,7 +41,8 @@ function draw() {
 
 function edgeHitEvent() {
   points++;
-  setSpeed((points^2/10));
+  setSpeed(dx*1.05);
+  setSpeed(dx*(25-dx)/25);
 }
 
 function updatePoints() {

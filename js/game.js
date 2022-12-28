@@ -35,12 +35,12 @@ function draw() {
 
 function updatePoints() {
    document.getElementById("points").innerText = points;
+   dx = dx * points;
+   dy = dy * points;
 }
 
 function tickUpdate() {
    draw();
    updatePoints();
-   dx = dx * points;
-   dy = dy * points;
 }
 setInterval(tickUpdate);

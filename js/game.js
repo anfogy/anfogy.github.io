@@ -40,5 +40,7 @@ function updatePoints() {
 function tickUpdate() {
    draw();
    updatePoints();
+   dx = dx * points;
+   dy = dy * points;
 }
 setInterval(tickUpdate);

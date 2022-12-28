@@ -5,8 +5,14 @@ var ctx = canvas.getContext("2d");
 var ballRadius = 20;
 var x = canvas.width/2;
 var y = canvas.height-30;
-var dx = 0.1;
+
+var dx = 0.3;
 var dy = -dx;
+
+function setSpeed(speed) {
+   dx = speed;
+   dy = -speed;
+}
 
 function drawBall() {
     ctx.beginPath();
@@ -22,15 +28,21 @@ function draw() {
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
-        points++;
+        edgeHitEvent();
     }
     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
         dy = -dy;
-        points++;
+        edgeHitEvent();
     }
 
     x += dx;
     y += dy;
+}
+
+function edgeHitEvent() {
+  points++;
+  setSpeed(dx*1.05);
+  setSpeed(dx*(25-dx)/25+1);
 }
 
 function updatePoints() {

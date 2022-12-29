@@ -1,3 +1,7 @@
+html * {
+  font: 16px Arial, sans-serif;
+}
+
 #game {
   margin: auto;
   width: 50%;
@@ -7,4 +11,13 @@
 
 #points {
   font-size: x-large;
+}
+
+#footer{
+     position:absolute;
+     bottom:0;
+     left:0;
+     background: #eee;
+     border: 1px solid powderblue;
+     width: 50px;
 }

@@ -1,4 +1,5 @@
 var points = 1;
+var orSpeed = 0.3
 
 var canvas = document.getElementById("ballCanv");
 var ctx = canvas.getContext("2d");
@@ -6,7 +7,7 @@ var ballRadius = 20;
 var x = Math.random() * (canvas.width - 60) + 10;
 var y = Math.random() * (canvas.height - 100);
 
-var dx = 0.45;
+var dx = orSpeed;
 var dxd = 0;
 var dy = -dx;
 var dyd = 1;
@@ -53,7 +54,7 @@ function draw() {
 
 function edgeHitEvent() {
   points++;
-  setSpeed(speed * Math.max(points * 0.05, 1));
+  setSpeed(orSpeed + Math.log(points));
 }
 
 function updatePoints() {

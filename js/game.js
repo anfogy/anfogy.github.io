@@ -104,7 +104,7 @@ function getCookie(cname) {
 
 //-------forget the balls, get into some news bar now-------//
 
-var news = document.getElementById('news');
+/* var news = document.getElementById('news');
 var guh = document.getElementById('guh');
 
 var w = 400;
@@ -125,3 +125,4 @@ function changeNews() {
 }
 
 var newsTextInterval = setInterval(moveNews, 70);
+*/

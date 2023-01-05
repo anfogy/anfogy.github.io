@@ -10,9 +10,7 @@ var x = random(canvas.width - ballRadius, ballRadius);
 var y = random(canvas.height - ballRadius, ballRadius);
 
 var dx = orSpeed;
-var dxd = 0;
 var dy = -dx;
-var dyd = 1;
 var speed = dx;
 
 var lastCalcTime = 0;
@@ -20,15 +18,17 @@ var lastCalcTime = 0;
 load();
 
 function setSpeed(sp) {
-  if (dxd % 2) {
+  if (Math.sign(dx) = -1) {
     dx = -sp;
   } else {
     dx = sp;
-  } if (dyd % 2) {
+  }
+  if (Math.sign(dy) = -1) {
     dy = -sp;
   } else {
     dy = sp;
   }
+
   speed = sp;
 }
 
@@ -42,15 +42,14 @@ function drawBall() {
 
 function ballTrack() {
   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-    dxd++;
     dx = -dx;
     edgeHitEvent();
   }
   if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-    dyd++;
-    dy = -dy;
+    dy = -dy
     edgeHitEvent();
   }
+  
   x += dx;
   y += dy;
 }
@@ -77,8 +76,14 @@ function refreshUpdate() {
 var tickInterval = setInterval(tickUpdate);
 var refreshInterval = setInterval(refreshUpdate);
 var saveInterval = setInterval(function(){
-  document.cookie = "save=" + points+";SameSite=Lax";
+  save();
 }, 5000)
+
+function save() {
+  document.cookie = "save=" + points+"; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+}
+
+window.onbeforeunload = save();
 
 function load() {
   points = getCookie("save");

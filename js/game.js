@@ -18,12 +18,12 @@ var lastCalcTime = 0;
 load();
 
 function setSpeed(sp) {
-  if (Math.sign(dx) = -1) {
+  if (Math.sign(dx) == -1) {
     dx = -sp;
   } else {
     dx = sp;
   }
-  if (Math.sign(dy) = -1) {
+  if (Math.sign(dy) == -1) {
     dy = -sp;
   } else {
     dy = sp;

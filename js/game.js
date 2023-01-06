@@ -2,6 +2,7 @@ var version = 1;
 
 var points = 0;
 var orSpeed = 0.3
+var refreshRate = 1;
 
 var canvas = document.getElementById("ballCanv");
 var ctx = canvas.getContext("2d");
@@ -12,8 +13,6 @@ var y = random(canvas.height - ballRadius, ballRadius);
 var dx = orSpeed;
 var dy = -dx;
 var speed = dx;
-
-var lastCalcTime = 0;
 
 load();
 
@@ -56,12 +55,16 @@ function ballTrack() {
 
 function edgeHitEvent() {
   points++;
-  setSpeed(orSpeed + (Math.log(points)**1.3));
+  updateSpeed();
   updatePoints();
 }
 
 function updatePoints() {
   document.getElementById("points").innerText = points;
+}
+
+function updateSpeed() {
+  setSpeed(orSpeed + Math.min(Math.log(points)**(2.3*Math.random()), 12));
 }
 
 function tickUpdate() {
@@ -74,7 +77,7 @@ function refreshUpdate() {
 }
 
 var tickInterval = setInterval(tickUpdate);
-var refreshInterval = setInterval(refreshUpdate);
+var refreshInterval = setInterval(refreshUpdate, refreshRate);
 var saveInterval = setInterval(function(){
   save();
 }, 5000)
@@ -87,7 +90,7 @@ window.onbeforeunload = save();
 
 function load() {
   points = getCookie("save");
-  setSpeed(orSpeed + (Math.log(points)**1.3));
+  updateSpeed();
   updatePoints();
 }
 

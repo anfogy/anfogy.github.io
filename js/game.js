@@ -64,7 +64,7 @@ function updatePoints() {
 }
 
 function updateSpeed() {
-  setSpeed(orSpeed + Math.min(Math.log(points)**(2.3*Math.random()), 12));
+  setSpeed(orSpeed + 15*(points/(points+100)));
 }
 
 function tickUpdate() {

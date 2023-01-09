@@ -64,7 +64,7 @@ function updatePoints() {
 }
 
 function updateSpeed() {
-  setSpeed(orSpeed + 15*(points/(points+100)));
+  setSpeed(orSpeed + 10*(points/(points+100)));
 }
 
 function tickUpdate() {

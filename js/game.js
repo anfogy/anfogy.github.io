@@ -1,7 +1,7 @@
 var version = 1;
 
 var points = 0;
-var orSpeed = 0.3
+var orSpeed = 0.8;
 var refreshRate = 1;
 
 var canvas = document.getElementById("ballCanv");
@@ -13,16 +13,30 @@ var y = random(canvas.height - ballRadius, ballRadius);
 var dx = orSpeed;
 var dy = -dx;
 var speed = dx;
+var sbl = 10;
 
-load();
+var upgrade1cost = 10;
+
+function upgrade1() {
+  button = document.getElementById("upgrade1");
+  cost = document.getElementById("upgrade1Cost");
+
+  if (points - upgrade1cost >= 0) {
+    points -= upgrade1cost;
+    sbl += 5;
+    upgrade1cost += Math.floor((sbl/5-2)**1.3) + 10;
+  }
+
+  cost.innerText = upgrade1cost;
+}
 
 function setSpeed(sp) {
-  if (Math.sign(dx) = -1) {
+  if (Math.sign(dx) == -1) {
     dx = -sp;
   } else {
     dx = sp;
   }
-  if (Math.sign(dy) = -1) {
+  if (Math.sign(dy) == -1) {
     dy = -sp;
   } else {
     dy = sp;
@@ -48,7 +62,7 @@ function ballTrack() {
     dy = -dy
     edgeHitEvent();
   }
-  
+
   x += dx;
   y += dy;
 }
@@ -64,7 +78,7 @@ function updatePoints() {
 }
 
 function updateSpeed() {
-  setSpeed(orSpeed + 10*(points/(points+100)));
+  setSpeed(orSpeed + sbl*(points/(points+60)));
 }
 
 function tickUpdate() {
@@ -76,6 +90,8 @@ function refreshUpdate() {
   drawBall();
 }
 
+load();
+
 var tickInterval = setInterval(tickUpdate);
 var refreshInterval = setInterval(refreshUpdate, refreshRate);
 var saveInterval = setInterval(function(){
@@ -83,13 +99,17 @@ var saveInterval = setInterval(function(){
 }, 5000)
 
 function save() {
-  document.cookie = "save=" + points+"; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+  saves = '{"points":"'+points+'","speed":"'+speed+'","sbl":"'+sbl+'"}';
+  document.cookie = 'save='+ saves +'; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT';
 }
 
 window.onbeforeunload = save();
 
 function load() {
-  points = getCookie("save");
+  saves = JSON.parse(getCookie("save"));
+  points = saves.points && 0;
+  sbl = saves.sbl && 10;
+  setSpeed(saves.speed && orSpeed);
   updateSpeed();
   updatePoints();
 }
@@ -109,6 +129,8 @@ function getCookie(cname) {
   }
   return "";
 }
+
+
 
 //-------forget the balls, get into some news bar now-------//
 

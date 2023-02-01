@@ -112,6 +112,7 @@ function load() {
   setSpeed(saves.speed && orSpeed);
   updateSpeed();
   updatePoints();
+  save();
 }
 
 function getCookie(cname) {

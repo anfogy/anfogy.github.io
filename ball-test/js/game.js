@@ -96,20 +96,20 @@ var tickInterval = setInterval(tickUpdate);
 var refreshInterval = setInterval(refreshUpdate, refreshRate);
 var saveInterval = setInterval(function(){
   save();
-}, 5000)
+}, 50)
 
 function save() {
   saves = '{"points":"'+points+'","speed":"'+speed+'","sbl":"'+sbl+'"}';
   document.cookie = 'save='+ saves +'; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT';
 }
 
-window.onbeforeunload = save();
-
 function load() {
   saves = JSON.parse(getCookie("save"));
-  points = saves.points && 0;
-  sbl = saves.sbl && 10;
-  setSpeed(saves.speed && orSpeed);
+  if (save != "") {
+    points = saves.points;
+    sbl = saves.sbl;
+    setSpeed(saves.speed);
+  }
   updateSpeed();
   updatePoints();
   save();

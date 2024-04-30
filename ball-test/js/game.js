@@ -94,9 +94,7 @@ load();
 
 var tickInterval = setInterval(tickUpdate);
 var refreshInterval = setInterval(refreshUpdate, refreshRate);
-var saveInterval = setInterval(function(){
-  save();
-}, 50)
+var saveInterval = setInterval(save, 100)
 
 function save() {
   saves = '{"points":"'+points+'","speed":"'+speed+'","sbl":"'+sbl+'"}';
@@ -104,11 +102,15 @@ function save() {
 }
 
 function load() {
-  saves = JSON.parse(getCookie("save"));
-  if (save != "") {
-    points = saves.points;
-    sbl = saves.sbl;
-    setSpeed(saves.speed);
+  _save = getCookie("save");
+  if (_save != "") {
+    console.log(_save);
+    _save = JSON.parse(_save);
+    points = _save.points;
+    sbl = _save.sbl;
+    setSpeed(_save.speed);
+  } else {
+    save();
   }
   updateSpeed();
   updatePoints();

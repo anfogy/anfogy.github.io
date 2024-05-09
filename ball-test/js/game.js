@@ -17,9 +17,10 @@ var sbl = 10;
 
 var upgrade1cost = 10;
 
+var upgrade1CostText = document.getElementById("upgrade1Cost");
+
 function upgrade1() {
   button = document.getElementById("upgrade1");
-  cost = document.getElementById("upgrade1Cost");
 
   if (points - upgrade1cost >= 0) {
     points -= upgrade1cost;
@@ -27,7 +28,7 @@ function upgrade1() {
     upgrade1cost += Math.floor((sbl/5-2)**1.3) + 10;
   }
 
-  cost.innerText = upgrade1cost;
+  upgrade1CostText.innerText = upgrade1cost;
 }
 
 function setSpeed(sp) {
@@ -92,7 +93,7 @@ function refreshUpdate() {
 
 function updateAllUpgradeCosts() {
   upgrade1cost += Math.floor((sbl/5-2)**1.3) + 10;
-  cost.innerText = upgrade1cost;
+  upgrade1CostText.innerText = upgrade1cost;
 }
 
 load();

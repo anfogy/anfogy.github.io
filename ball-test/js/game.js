@@ -90,7 +90,13 @@ function refreshUpdate() {
   drawBall();
 }
 
+function updateAllUpgradeCosts() {
+  upgrade1cost += Math.floor((sbl/5-2)**1.3) + 10;
+  cost.innerText = upgrade1cost;
+}
+
 load();
+updateAllUpgradeCosts();
 
 var tickInterval = setInterval(tickUpdate);
 var refreshInterval = setInterval(refreshUpdate, refreshRate);
